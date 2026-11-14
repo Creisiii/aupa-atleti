@@ -1,0 +1,25 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+
+# Secrets and local config
+.env
+.env.*
+appsettings.*.local.json
+appsettings.Development.json
+
+# Private media gallery (never committed)
+media/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
