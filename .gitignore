@@ -12,6 +12,7 @@ dist/
 # Secrets and local config
 .env
 .env.*
+!.env.example
 appsettings.*.local.json
 appsettings.Development.json
 

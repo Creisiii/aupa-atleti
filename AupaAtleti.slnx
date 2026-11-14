@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AupaAtleti.Api/AupaAtleti.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AupaAtleti.Tests/AupaAtleti.Tests.csproj" />
+  </Folder>
+</Solution>

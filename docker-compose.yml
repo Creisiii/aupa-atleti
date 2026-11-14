@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: aupa
+    ports: ["5432:5432"]
+    volumes: [dbdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: .
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      ConnectionStrings__Db: Host=db;Database=aupa;Username=postgres;Password=postgres
+      PitchApi__ApiKey: ${PITCHAPI_KEY:?set PITCHAPI_KEY in .env}
+      ApiKey: ${ADMIN_API_KEY:?set ADMIN_API_KEY in .env}
+    ports: ["8080:8080"]
+
+volumes:
+  dbdata:
