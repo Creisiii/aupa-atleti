@@ -9,8 +9,9 @@ public class PitchApiOptions
     public string ApiKey { get; set; } = "";
     /// <summary>The team this app follows. Default: Atlético Madrid.</summary>
     public string TeamId { get; set; } = "t_3NIiXl";
-    /// <summary>Leagues to sync. Defaults: LaLiga, Champions League.</summary>
-    public string[] LeagueIds { get; set; } = ["l_0ErfuF", "l_0bfbkO"];
+    /// <summary>Comma-separated leagues to sync. Defaults: LaLiga, Champions League. The first one drives the standings.</summary>
+    public string LeagueIds { get; set; } = "l_0ErfuF,l_0bfbkO";
+    public string[] Leagues => LeagueIds.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 }
 
 /// <summary>The only place that talks to the data provider. Swapping providers means replacing this file.</summary>

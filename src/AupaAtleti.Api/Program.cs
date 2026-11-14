@@ -65,7 +65,7 @@ app.MapGet("/api/matches/{id}", async (AppDb db, string id) =>
 
 app.MapGet("/api/standings", async (AppDb db, IOptions<PitchApiOptions> pitch, string? league) =>
 {
-    var leagueId = league ?? pitch.Value.LeagueIds[0];
+    var leagueId = league ?? pitch.Value.Leagues[0];
     var season = await db.Matches.Where(m => m.LeagueId == leagueId).MaxAsync(m => (string?)m.Season);
     var matches = await db.Matches.AsNoTracking().Where(m => m.LeagueId == leagueId && m.Season == season).ToListAsync();
     return Standings.Compute(matches).Select((r, i) => new { position = i + 1, r.Team, r.Played, r.Won, r.Drawn, r.Lost, r.GoalsFor, r.GoalsAgainst, r.GoalDifference, r.Points });

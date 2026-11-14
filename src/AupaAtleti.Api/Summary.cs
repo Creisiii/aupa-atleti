@@ -33,7 +33,7 @@ public static class MatchSummary
             var onTarget = stats.Pair("ShotsOnTarget") is var (oh, oa) ? $" (a puerta {oh:0}–{oa:0})" : "";
             line.Add($"tiros {th:0}–{ta:0}{onTarget}");
         }
-        if (line.Count > 0) sb.AppendLine(Capitalize(string.Join(" · ", line)) + ".");
+        if (line.Count > 0) sb.AppendLine($"Datos: {string.Join(" · ", line)}.");
 
         if (Formation(lineupsJson, isHome) is { } formation) sb.AppendLine($"Once del {team}: {formation}.");
 
@@ -90,7 +90,6 @@ public static class MatchSummary
     }
 
     private static string Num(double v) => v.ToString("0.00", CultureInfo.InvariantCulture).Replace('.', ',');
-    private static string Capitalize(string s) => char.ToUpperInvariant(s[0]) + s[1..];
 
     /// <summary>Reads home/away pairs from the provider's full-match stats, which arrive as display strings.</summary>
     private sealed class Stats

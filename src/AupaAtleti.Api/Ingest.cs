@@ -34,7 +34,7 @@ public class MatchSync(AppDb db, PitchApiClient api, IOptions<PitchApiOptions> p
     private async Task<SyncResult> RunCoreAsync(CancellationToken ct)
     {
         int upserted = 0, detailed = 0, emitted = 0;
-        foreach (var leagueId in pitch.Value.LeagueIds)
+        foreach (var leagueId in pitch.Value.Leagues)
             upserted += await UpsertLeagueAsync(leagueId, ct);
 
         var teamId = pitch.Value.TeamId;
